@@ -1,9 +1,11 @@
-package com.conradcrates.pulselivetechnicalchallenge;
+package com.conradcrates.pulselivetechnicalchallenge.articles;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.conradcrates.pulselivetechnicalchallenge.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +18,6 @@ public class MainActivity extends AppCompatActivity {
 
         articles = (RecyclerView)findViewById(R.id.list_articles);
         articles.setLayoutManager(new LinearLayoutManager(this));
-        articles.setAdapter(null);
+        articles.setAdapter(new ArticlesAdapter(null));
     }
 }
