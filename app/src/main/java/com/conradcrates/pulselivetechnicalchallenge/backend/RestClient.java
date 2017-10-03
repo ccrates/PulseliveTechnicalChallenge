@@ -1,5 +1,6 @@
 package com.conradcrates.pulselivetechnicalchallenge.backend;
 
+import android.os.Handler;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -17,11 +18,13 @@ import java.net.URL;
 public class RestClient {
 
     private static final String TAG = RestClient.class.getSimpleName();
+    private static final String LIST_ENDPOINT = "http://dynamic.pulselive.com/test/native/contentList.json";
 
-    public String getData(String urlPath){
+    public static String getData(){
         String result = null;
+
         try{
-            URL url = new URL(urlPath);
+            URL url = new URL(LIST_ENDPOINT);
             HttpURLConnection conn = (HttpURLConnection)url.openConnection();
             conn.setRequestMethod("GET");
             InputStream is = new BufferedInputStream(conn.getInputStream());
@@ -29,10 +32,11 @@ public class RestClient {
         } catch (IOException e){
             Log.e(TAG, e.getMessage());
         }
+
         return result;
     }
 
-    private String convertStreamToString(InputStream is){
+    private static String convertStreamToString(InputStream is){
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
         StringBuilder sb = new StringBuilder();
 

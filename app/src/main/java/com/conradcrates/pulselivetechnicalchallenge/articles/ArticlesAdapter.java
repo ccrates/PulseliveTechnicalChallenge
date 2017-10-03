@@ -1,9 +1,11 @@
 package com.conradcrates.pulselivetechnicalchallenge.articles;
 
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.conradcrates.pulselivetechnicalchallenge.R;
 import com.conradcrates.pulselivetechnicalchallenge.data.Article;
@@ -18,7 +20,7 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
 
     private List<Article> articles;
 
-    public ArticlesAdapter(List<Article> articles){
+    public ArticlesAdapter(@NonNull List<Article> articles){
         this.articles = articles;
     }
 
@@ -30,24 +32,30 @@ public class ArticlesAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        Article article = articles.get(position);
+
         if(holder instanceof ArticleViewHolder){
             ArticleViewHolder vh = (ArticleViewHolder)holder;
+
+            vh.title.setText(article.getTitle());
+            vh.subtitle.setText(article.getSubtitle());
         }
     }
 
     @Override
     public int getItemCount() {
-        if(articles != null) {
-            return articles.size();
-        }
-
-        return 0;
+        return articles.size();
     }
 
     private class ArticleViewHolder extends RecyclerView.ViewHolder{
 
+        private TextView title, subtitle;
+
         private ArticleViewHolder(View view){
             super(view);
+
+            title = (TextView)view.findViewById(R.id.text_title);
+            subtitle = (TextView)view.findViewById(R.id.text_subtitle);
         }
     }
 }

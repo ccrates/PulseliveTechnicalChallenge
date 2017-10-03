@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context="com.conradcrates.pulselivetechnicalchallenge.articles.MainActivity"
     android:orientation="vertical"
-    android:background="#FFFFFF">
+    android:background="@color/white">
     
     <ImageView
         android:layout_width="150dp"
