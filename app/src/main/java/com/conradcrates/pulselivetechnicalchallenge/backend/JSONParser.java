@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class JSONParser {
 
     private static final String TAG = JSONParser.class.getSimpleName();
 
-    public static List<Article> getArticles(String data){
+    public static List<Article> parseArticles(String data){
         List<Article> articles = new ArrayList<>();
 
         try {
@@ -29,8 +30,10 @@ public class JSONParser {
                 JSONObject jsonArticle = items.getJSONObject(i);
 
                 Article article = new Article();
+                article.setId(jsonArticle.getInt("id"));
                 article.setTitle(jsonArticle.getString("title"));
                 article.setSubtitle(jsonArticle.getString("subtitle"));
+                article.setDate(jsonArticle.getString("date"));
 
                 articles.add(article);
             }
@@ -39,5 +42,24 @@ public class JSONParser {
         }
 
         return articles;
+    }
+
+    public static Article parseArticleDetails(String data){
+        Article article = new Article();
+
+        try{
+            JSONObject root = new JSONObject(data);
+            JSONObject jsonArticle = root.getJSONObject("item");
+
+            article.setId(jsonArticle.getInt("id"));
+            article.setTitle(jsonArticle.getString("title"));
+            article.setSubtitle(jsonArticle.getString("subtitle"));
+            article.setBody(jsonArticle.getString("body"));
+            article.setDate(jsonArticle.getString("date"));
+        } catch (JSONException e){
+            Log.e(TAG, e.getMessage());
+        }
+
+        return article;
     }
 }

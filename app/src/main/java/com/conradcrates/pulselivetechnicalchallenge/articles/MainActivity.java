@@ -28,12 +28,12 @@ public class MainActivity extends AppCompatActivity {
     private class RestTask extends AsyncTask<Void, Integer, String>{
         @Override
         protected String doInBackground(Void... voids) {
-            return RestClient.getData();
+            return RestClient.getArticles();
         }
 
         @Override
         protected void onPostExecute(String s) {
-            articlesView.setAdapter(new ArticlesAdapter(JSONParser.getArticles(s)));
+            articlesView.setAdapter(new ArticlesAdapter(JSONParser.parseArticles(s), MainActivity.this));
         }
     }
 }

@@ -10,7 +10,7 @@ public class Article {
 
     private int id;
     private String title, subtitle, body;
-    private Date date;
+    private String date;
 
     public int getId() {
         return id;
@@ -44,11 +44,11 @@ public class Article {
         this.body = body;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }
